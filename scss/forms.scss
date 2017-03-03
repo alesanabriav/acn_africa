@@ -1,0 +1,80 @@
+@import 'variables';
+input,
+select {
+	background: transparent;
+	width: 100%;
+	display: block;
+	height: $bs-input-height;
+	border: 1px solid $bs-input-border-color;
+	transition: all 300ms;
+	padding: 6px 12px;
+	font-size: .8em;
+
+	&:focus {
+		border-color: $bs-input-border-focus-color;
+		box-shadow: none;
+		outline: none;
+	}
+}
+
+select {
+	appearance: none;
+	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAABGdBTUEAALGPC/xhBQAAAKhJREFUGBljzKlp9mNk/P9wcnPdRQYiQU5DmwbDv3+6TIzsDFf//mfcnF3blEKMXqC6sP9//+xnYmK8znxq//73Fq5Om/79YZxvZu/4+fSh/edwGQLSCJSbyMzM7DqpofoKM0ghMQagawTpA2smZAA2jSiacRmASyNIPSOIQAe5zc3Kf38y7GdiYNjxn/G/L8yP6OqwagYpAhvwi2E1CzNTHChw0DWC+AArSGqXBnEQJwAAAABJRU5ErkJggg==')
+ no-repeat 97% 50%;
+	border-radius: 0;
+}
+
+.form-inline {
+	select, input, .input-container {
+		display: inline-block;
+		vertical-align: top;
+		width: auto;
+		@media #{$s} {
+			width: 100%;
+			padding: 0 15px;
+		}
+	}
+}
+
+
+.input-inline {
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+}
+
+.input-container, .form-group {
+	margin-bottom: 10px;
+}
+
+.form-group {
+	position: relative;
+
+	&--addon {
+		float: left;
+		
+		input {
+			padding-left: 50px;
+		}
+	}
+
+	&__addon {
+	left: 25px;
+		top: 30%;
+		position: absolute;
+		height: $bs-input-height;
+		color: #fff;
+	}
+}
+
+.input-error {
+	background: #F4334A;
+	color: #fff;
+	text-align: left;
+	width: 95%;
+	font-size: .9em;
+	padding: 3px 0 3px 12px;
+	border-radius: 3px;
+
+}
+
