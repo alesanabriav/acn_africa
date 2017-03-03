@@ -1,0 +1,28 @@
+{
+  "name": "acn_africa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/developersoul/acn_africa.git",
+    "type": "git"
+  },
+  "author": "Alejandro Sanabria <alesanabriav@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "babel-polyfill": "^6.23.0",
+    "card-validator": "^4.0.0",
+    "qs": "^6.3.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
