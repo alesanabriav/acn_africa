@@ -30,6 +30,7 @@ const CedritCard = React.createClass({
     return {...this.props.errors, stripe: field};
   },
   handleCard(e) {
+    e.preventDefault();
     let val = e.currentTarget.value;
     let number = onlyNum(val);
     number = maxLength(number, 16);
