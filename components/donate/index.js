@@ -55,7 +55,7 @@ const Donate = React.createClass({
   stripeToken() {
     let data = qs.stringify({action: 'stripe_token', data: this.state.stripe});
 
-    return request.post('/wp-admin/admin-ajax.php', data).then(res => {
+    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', data).then(res => {
       const stripe = {...this.state.stripe, token: res.data.id};
       this.setState({stripe});
     });
@@ -77,7 +77,7 @@ const Donate = React.createClass({
     };
     const dataAjax = qs.stringify({action: 'stripe_charge', data});
 
-    return request.post('/wp-admin/admin-ajax.php', dataAjax);
+    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', dataAjax);
   },
   completeTransaction(stripeResponse = {}) {
     const {amount, donation_type} = this.state;
