@@ -138,7 +138,7 @@ const Donate = React.createClass({
     }
 
     let left = `-${section * 100}%`;
-    this.setState({section, left});
+    this.setState({section, left, loading: false});
   },
 
   prevSection(e) {
