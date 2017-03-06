@@ -6,6 +6,7 @@ const Cards = React.createClass({
       ? 'card-type card-type--active'
       : 'card-type';
   },
+  
   render() {
     const {texts} = this.props;
 

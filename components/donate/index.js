@@ -30,10 +30,11 @@ const Donate = React.createClass({
       errors: {stripe: {}, contact: {}}
     };
   },
+
   getDefaultProps() {
     return {texts: {}, redirect: {}};
   },
-  
+
   fetchCountries() {
     const data = qs.stringify({action: 'countries'});
 
@@ -53,14 +54,17 @@ const Donate = React.createClass({
     e.preventDefault();
     this.nextSection();
   },
+
   stripeToken() {
     let data = qs.stringify({action: 'stripe_token', data: this.state.stripe});
 
-    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', data).then(res => {
-      const stripe = {...this.state.stripe, token: res.data.id};
-      this.setState({stripe});
-    });
+    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', data)
+      .then(res => {
+        const stripe = {...this.state.stripe, token: res.data.id};
+        this.setState({loading: false, stripe});
+      });
   },
+
   stripeCharge() {
     const {
       contact,
@@ -69,6 +73,7 @@ const Donate = React.createClass({
       donation_type,
       stripe: {token}
     } = this.state;
+
     const data = {
       ...contact,
       currency,
@@ -76,10 +81,12 @@ const Donate = React.createClass({
       donation_type,
       stripe_token: token
     };
+
     const dataAjax = qs.stringify({action: 'stripe_charge', data});
 
     return request.post('https://acninternational.org/wp-admin/admin-ajax.php', dataAjax);
   },
+
   completeTransaction(stripeResponse = {}) {
     const {amount, donation_type} = this.state;
     const base = this.props.redirect[donation_type];
@@ -99,30 +106,41 @@ const Donate = React.createClass({
     let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}&order_id=${id}`;
     window.location = url;
   },
+
   creditCardIsValid() {
     let errs = this.creditCard.allValidations();
     return Object.keys(errs.stripe).every(key => errs.stripe[key] == true);
   },
+
   contactIsValid() {
     let errs = this.contact.validateAll();
     return Object.keys(errs.contact).every(key => errs.contact[key] == true);
   },
+
   nextSection() {
     let section = this.state.section < 2 ? this.state.section + 1 : 2;
+    this.setState({loading: true});
 
     if (this.state.section == 1) {
-      if (!this.creditCardIsValid()) return false;
+      if (!this.creditCardIsValid()) {
+        this.setState({loading: false});
+        return false;
+      };
       this.stripeToken();
     }
 
     if (this.state.section == 2) {
-      if (!this.contactIsValid()) return false;
+      if (!this.contactIsValid()) {
+         this.setState({loading: false});
+        return false
+      };
       this.stripeCharge().then(res => this.completeTransaction(res.data));
     }
 
     let left = `-${section * 100}%`;
     this.setState({section, left});
   },
+
   prevSection(e) {
     e.preventDefault();
     let section = this.state.section >= 0 ? this.state.section - 1 : 0;
@@ -178,6 +196,7 @@ const Donate = React.createClass({
                 ? this.props.texts.next
                 : this.props.texts.donate
             }
+            {this.state.loading ? '...' : ''}
           </button>
           <span style={donationTypeStyle}>
             {
