@@ -13,7 +13,7 @@ const Cards = React.createClass({
       <div className="form-group donate_landing__cards">
         <img
           className={this.cardType('visa')}
-          src={`${texts.template_uri}/public/img/cards/Visa.png`}
+          src={`/publish/assets/edd88082-37fc-4e9b-80ee-5a18d577e959/dc5a1ddd-visa.png`}
         />
         <img
           className={this.cardType('master-card')}

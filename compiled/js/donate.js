@@ -15243,7 +15243,7 @@ var Cards = _react2.default.createClass({
       { className: 'form-group donate_landing__cards' },
       _react2.default.createElement('img', {
         className: this.cardType('visa'),
-        src: texts.template_uri + '/public/img/cards/Visa.png'
+        src: '/publish/assets/edd88082-37fc-4e9b-80ee-5a18d577e959/dc5a1ddd-visa.png'
       }),
       _react2.default.createElement('img', {
         className: this.cardType('master-card'),

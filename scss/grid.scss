@@ -3,7 +3,6 @@
 	max-width: 1140px;
 	margin-right: auto;
 	margin-left: auto;
-	@include clearfix();
 }
 
 .row {
@@ -106,4 +105,8 @@ $columns: 12;
 
 .col-full {
 	width: 100%;
+}
+
+.hidden {
+	display: none
 }
