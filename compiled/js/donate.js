@@ -15243,23 +15243,23 @@ var Cards = _react2.default.createClass({
       { className: 'form-group donate_landing__cards' },
       _react2.default.createElement('img', {
         className: this.cardType('visa'),
-        src: '/publish/assets/edd88082-37fc-4e9b-80ee-5a18d577e959/dc5a1ddd-visa.png'
+        src: '//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/dc5a1ddd-visa.png'
       }),
       _react2.default.createElement('img', {
         className: this.cardType('master-card'),
-        src: texts.template_uri + '/public/img/cards/MasterCard.png'
+        src: '//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/b59fb4ec-mastercard.png'
       }),
       _react2.default.createElement('img', {
         className: this.cardType('diners-club'),
-        src: texts.template_uri + '/public/img/cards/DinersClub.png'
+        src: '//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/ab753fb2-dinersclub.png'
       }),
       _react2.default.createElement('img', {
         className: this.cardType('american-express'),
-        src: texts.template_uri + '/public/img/cards/AmericanExpress.png'
+        src: '//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/74b4d19c-americanexpress.png'
       }),
       _react2.default.createElement('img', {
         className: this.cardType('discover'),
-        src: texts.template_uri + '/public/img/cards/Discover.png'
+        src: '//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/92a282bd-discover.png'
       })
     );
   }
