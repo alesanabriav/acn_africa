@@ -6,6 +6,7 @@ import Amount from './amount';
 import CreditCard from './credit_card';
 import Contact from './contact';
 import multipleRender from '../../lib/mutiple_render';
+import '../../scss/donate.scss';
 
 const Donate = React.createClass({
   getInitialState() {
@@ -35,7 +36,8 @@ const Donate = React.createClass({
   fetchCountries() {
     const data = qs.stringify({action: 'countries'});
 
-    return request.post('/wp-admin/admin-ajax.php', data).then(res => {
+    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', data)
+    .then(res => {
       this.setState({countries: res.data});
       return res.data;
     });
