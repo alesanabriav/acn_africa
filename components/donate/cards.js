@@ -14,23 +14,23 @@ const Cards = React.createClass({
       <div className="form-group donate_landing__cards">
         <img
           className={this.cardType('visa')}
-          src={`//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/dc5a1ddd-visa.png`}
+          src={`//acninternational.org/wp-content/themes/acn_int/public/img/cards/Visa.png`}
         />
         <img
           className={this.cardType('master-card')}
-          src={`//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/b59fb4ec-mastercard.png`}
+          src={`//acninternational.org/wp-content/themes/acn_int/public/img/cards/MasterCard.png`}
         />
         <img
           className={this.cardType('diners-club')}
-          src={`//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/ab753fb2-dinersclub.png`}
+          src={`//acninternational.org/wp-content/themes/acn_int/public/img/cards/DinersClub.png`}
         />
         <img
           className={this.cardType('american-express')}
-          src={`//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/74b4d19c-americanexpress.png`}
+          src={`//acninternational.org/wp-content/themes/acn_int/public/img/cards/AmericanExpress.png`}
         />
         <img
           className={this.cardType('discover')}
-          src={`//d9hhrg4mnvzow.cloudfront.net/africa.acninternational.org/usa/92a282bd-discover.png`}
+          src={`//acninternational.org/wp-content/themes/acn_int/public/img/cards/Discover.png`}
         />
       </div>
     );
