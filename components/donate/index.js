@@ -45,6 +45,14 @@ const Donate = React.createClass({
       return res.data;
     });
   },
+  
+  componentDidMount() {
+    if(this.donateForm) {
+      console.log(donateForm);
+      this.donateForm.addEventListener('keydown', this.nextSection);
+    }
+  },
+
   componentWillMount() {
     this.fetchCountries();
   },
@@ -150,6 +158,7 @@ const Donate = React.createClass({
     let left = `-${section * 100}%`;
     this.setState({section, left});
   },
+
   render() {
     let sectionWidth = `${100 / 3}%`;
     let viewPortStyle = {width: '300%', left: this.state.left};
@@ -169,7 +178,11 @@ const Donate = React.createClass({
     };
 
     return (
-      <form onSubmit={this.handleSubmit} className="donate_react">
+      <form 
+        onSubmit={this.handleSubmit} 
+        className="donate_react" 
+        ref={donateForm => this.donateForm = donateForm} 
+      >
         <div className="donate_react__viewport" style={viewPortStyle}>
           <Amount
             {...this.state}
