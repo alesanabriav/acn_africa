@@ -7,6 +7,7 @@ import CreditCard from './credit_card';
 import Contact from './contact';
 import multipleRender from '../../lib/mutiple_render';
 import '../../scss/donate.scss';
+import Progress from './progress';
 
 const Donate = React.createClass({
   getInitialState() {
@@ -47,9 +48,11 @@ const Donate = React.createClass({
   componentWillMount() {
     this.fetchCountries();
   },
+
   handleChange(field) {
     this.setState({...this.state, ...field});
   },
+
   handleSubmit(e) {
     e.preventDefault();
     this.nextSection();
@@ -215,6 +218,7 @@ const Donate = React.createClass({
               : ''
           }
         </div>
+        <Progress section={this.state.section} />
       </form>
     );
   }
