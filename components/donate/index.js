@@ -48,7 +48,7 @@ const Donate = React.createClass({
   
   componentDidMount() {
     if(this.donateForm) {
-      console.log(donateForm);
+      console.log(this.donateForm);
       this.donateForm.addEventListener('keydown', this.nextSection);
     }
   },
@@ -182,7 +182,7 @@ const Donate = React.createClass({
         onSubmit={this.handleSubmit} 
         className="donate_react" 
         ref={donateForm => this.donateForm = donateForm} 
-      >
+      > 
         <div className="donate_react__viewport" style={viewPortStyle}>
           <Amount
             {...this.state}
