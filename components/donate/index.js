@@ -50,6 +50,7 @@ const Donate = React.createClass({
     if(this.donateForm) {
       this.donateForm.addEventListener('keydown', (e) => {
         if(e.keyCode == 9) {
+          console.log('tab');
            return;
         }
       });
