@@ -38,6 +38,7 @@ const amount = React.createClass({
               type="text"
               onChange={this.handleAmount}
               value={amount}
+              autocomplete="off"
             />
           </div>
           <div className="form-group col-5-l">

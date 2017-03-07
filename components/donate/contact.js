@@ -62,6 +62,7 @@ const Contact = React.createClass({
               placeholder={texts.placeholder_name}
               onChange={this.handleChange.bind(null, 'name')}
               value={contact.name}
+              autocomplete="off"
             />
             <span className={this.showErr('name')}>
               {texts.validation_name}
@@ -74,6 +75,7 @@ const Contact = React.createClass({
               placeholder={texts.placeholder_email}
               onChange={this.handleChange.bind(null, 'email')}
               value={contact.email}
+              autocomplete="off"
             />
             <span className={this.showErr('email')}>
               {texts.validation_email}
@@ -87,6 +89,7 @@ const Contact = React.createClass({
               onChange={this.handleChange.bind(null, 'country')}
               value={contact.country || texts.country}
             >
+            <option>{texts.select_country}</option>
               {this.props.countries.map((country, i) => {
                 return <option key={i} value={country}>{country}</option>;
               })}
