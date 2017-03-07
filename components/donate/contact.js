@@ -62,7 +62,7 @@ const Contact = React.createClass({
               placeholder={texts.placeholder_name}
               onChange={this.handleChange.bind(null, 'name')}
               value={contact.name}
-              autocomplete="off"
+              autoComplete="off"
             />
             <span className={this.showErr('name')}>
               {texts.validation_name}
@@ -75,7 +75,7 @@ const Contact = React.createClass({
               placeholder={texts.placeholder_email}
               onChange={this.handleChange.bind(null, 'email')}
               value={contact.email}
-              autocomplete="off"
+              autoComplete="off"
             />
             <span className={this.showErr('email')}>
               {texts.validation_email}

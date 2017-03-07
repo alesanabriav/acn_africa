@@ -125,7 +125,7 @@ const CedritCard = React.createClass({
             className={`form-control ${this.inputErrStyle('number')}`}
             onChange={this.handleCard}
             value={stripe.number}
-            autocomplete="off"
+            autoComplete="off"
           />
           <span className={this.showErr('number')}>
             {texts.validation_card}
@@ -139,12 +139,13 @@ const CedritCard = React.createClass({
               className="form-control"
               onChange={this.handleExpiry.bind(null, 'exp_month')}
               value={stripe.exp_month}
-              autocomplete="off"
+              autoComplete="off"
             />
             <span className={this.showErr('exp_month')}>
               {texts.validation_month}
             </span>
           </div>
+          
           <div className="form-group col-4-l col-4">
             <input
               type="text"
@@ -152,7 +153,7 @@ const CedritCard = React.createClass({
               className="form-control"
               onChange={this.handleExpiry.bind(null, 'exp_year')}
               value={stripe.exp_year}
-              autocomplete="off"
+              autoComplete="off"
             />
             <span className={this.showErr('exp_year')}>
               {texts.validation_year}
@@ -165,7 +166,7 @@ const CedritCard = React.createClass({
               className="form-control"
               onChange={this.handleCvc}
               value={stripe.cvc}
-              autocomplete="off"
+              autoComplete="off"
             />
             <span className={this.showErr('cvc')}>
               {texts.validation_cvc}
