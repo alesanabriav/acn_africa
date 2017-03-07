@@ -155,6 +155,7 @@ const Donate = React.createClass({
       marginLeft: '15px',
       color: '#fff'
     };
+    
     let backBtnStyle = {
       float: 'right',
       background: 'transparent',
