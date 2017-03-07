@@ -158,7 +158,9 @@ const Donate = React.createClass({
     let backBtnStyle = {
       float: 'right',
       background: 'transparent',
-      border: 'none'
+      border: 'none',
+      fontSize: '20px',
+      color: '#fff'
     };
 
     return (
