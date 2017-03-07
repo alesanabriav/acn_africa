@@ -13,3 +13,5 @@ const Progress = React.createClass({
 		)
 	}
 });
+
+export default Progress;
