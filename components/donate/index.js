@@ -48,8 +48,11 @@ const Donate = React.createClass({
   
   componentDidMount() {
     if(this.donateForm) {
-      console.log(this.donateForm);
-      this.donateForm.addEventListener('keydown', this.nextSection);
+      this.donateForm.addEventListener('keydown', (e) => {
+        if(e.keyCode == 9) {
+           this.nextSection();
+        }
+      });
     }
   },
 
