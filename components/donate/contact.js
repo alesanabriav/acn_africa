@@ -15,6 +15,9 @@ const Contact = React.createClass({
   },
 
   handleChange(field, e) {
+    if(e.keyCode == 9) {
+      e.preventDefault();
+    }
     let val = e.currentTarget.value;
     let errors = this.validate(field, val);
 

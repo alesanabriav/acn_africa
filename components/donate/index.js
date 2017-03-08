@@ -6,8 +6,8 @@ import Amount from './amount';
 import CreditCard from './credit_card';
 import Contact from './contact';
 import multipleRender from '../../lib/mutiple_render';
-import '../../scss/donate.scss';
 import Progress from './progress';
+import '../../scss/donate.scss';
 
 const Donate = React.createClass({
   getInitialState() {
@@ -45,23 +45,20 @@ const Donate = React.createClass({
       return res.data;
     });
   },
-  
-  componentDidMount() {
-    if(this.donateForm) {
-      this.donateForm.addEventListener('keydown', (e) => {
-        if(e.keyCode == 9) {
-          e.preventDefault();
-          return;
-        }
-      });
-    }
-  },
 
+  componentDidMount() {
+    document.querySelector('input').addEventListener('keydown', function (e) {
+      if (e.which == 9) {
+        e.preventDefault();
+      }
+    });
+  },
+  
   componentWillMount() {
     this.fetchCountries();
   },
 
-  handleChange(field) {
+  handleChange(field, e) {
     this.setState({...this.state, ...field});
   },
 

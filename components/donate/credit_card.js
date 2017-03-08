@@ -1,13 +1,15 @@
 import React from 'react';
 import validCard from 'card-validator';
 import Cards from './cards';
-import {onlyNum, maxLength} from '../../lib/clean_inputs';
+import { onlyNum, maxLength } from '../../lib/clean_inputs';
 
 const CedritCard = React.createClass({
   getDefaultProps() {
-    return {texts: {},
-     stripe: {},
-     errors: {}};
+    return {
+      texts: {},
+      stripe: {},
+      errors: {}
+    };
   },
   
   validateCard(card) {
@@ -23,7 +25,7 @@ const CedritCard = React.createClass({
   },
   
   validateCvc(cvc) {
-    cvc = validCard.cvv(cvc).isValid;
+    cvc = validCard.cvv(cvc, 4).isValid;
     return this.updateErrors({cvc});
   },
   
@@ -33,14 +35,15 @@ const CedritCard = React.createClass({
       : null;
   },
   
-  
   updateErrors(field) {
     return {...this.props.errors, stripe: field};
   },
   
-
   handleCard(e) {
-    e.preventDefault();
+    if(e.keyCode == 9) {
+      e.preventDefault();
+    }
+    
     let val = e.currentTarget.value;
     let number = onlyNum(val);
     number = maxLength(number, 16);
@@ -145,7 +148,7 @@ const CedritCard = React.createClass({
               {texts.validation_month}
             </span>
           </div>
-          
+
           <div className="form-group col-4-l col-4">
             <input
               type="text"

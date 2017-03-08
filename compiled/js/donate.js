@@ -13903,6 +13903,9 @@ var Contact = _react2.default.createClass({
     return _extends({}, this.props.errors, { contact: contact });
   },
   handleChange: function handleChange(field, e) {
+    if (e.keyCode == 9) {
+      e.preventDefault();
+    }
     var val = e.currentTarget.value;
     var errors = this.validate(field, val);
 
@@ -14045,9 +14048,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var CedritCard = _react2.default.createClass({
   displayName: 'CedritCard',
   getDefaultProps: function getDefaultProps() {
-    return { texts: {},
+    return {
+      texts: {},
       stripe: {},
-      errors: {} };
+      errors: {}
+    };
   },
   validateCard: function validateCard(card) {
     var number = _cardValidator2.default.number(card).isValid;
@@ -14060,7 +14065,7 @@ var CedritCard = _react2.default.createClass({
     return this.updateErrors({ exp_month: exp_month, exp_year: exp_year });
   },
   validateCvc: function validateCvc(cvc) {
-    cvc = _cardValidator2.default.cvv(cvc).isValid;
+    cvc = _cardValidator2.default.cvv(cvc, 4).isValid;
     return this.updateErrors({ cvc: cvc });
   },
   getCardType: function getCardType(cardNum) {
@@ -14070,7 +14075,10 @@ var CedritCard = _react2.default.createClass({
     return _extends({}, this.props.errors, { stripe: field });
   },
   handleCard: function handleCard(e) {
-    e.preventDefault();
+    if (e.keyCode == 9) {
+      e.preventDefault();
+    }
+
     var val = e.currentTarget.value;
     var number = (0, _clean_inputs.onlyNum)(val);
     number = (0, _clean_inputs.maxLength)(number, 16);
@@ -33895,11 +33903,11 @@ var _mutiple_render = __webpack_require__(213);
 
 var _mutiple_render2 = _interopRequireDefault(_mutiple_render);
 
-__webpack_require__(216);
-
 var _progress = __webpack_require__(212);
 
 var _progress2 = _interopRequireDefault(_progress);
+
+__webpack_require__(216);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33940,19 +33948,16 @@ var Donate = _react2.default.createClass({
     });
   },
   componentDidMount: function componentDidMount() {
-    if (this.donateForm) {
-      this.donateForm.addEventListener('keydown', function (e) {
-        if (e.keyCode == 9) {
-          e.preventDefault();
-          return;
-        }
-      });
-    }
+    document.querySelector('input').addEventListener('keydown', function (e) {
+      if (e.which == 9) {
+        e.preventDefault();
+      }
+    });
   },
   componentWillMount: function componentWillMount() {
     this.fetchCountries();
   },
-  handleChange: function handleChange(field) {
+  handleChange: function handleChange(field, e) {
     this.setState(_extends({}, this.state, field));
   },
   handleSubmit: function handleSubmit(e) {
