@@ -7,6 +7,7 @@ import CreditCard from './credit_card';
 import Contact from './contact';
 import Progress from './progress';
 import '../../scss/donate.scss';
+const endpoint = 'https://acninternational.org/wp-admin/admin-ajax.php';
 
 const Donate = React.createClass({
   getInitialState() {
@@ -40,7 +41,7 @@ const Donate = React.createClass({
     const data = qs.stringify({action: 'countries'});
 
     return request
-      .post('https://acninternational.org/wp-admin/admin-ajax.php', data)
+      .post(endpoint, data)
       .then(res => {
         this.setState({countries: res.data});
         return res.data;
@@ -72,16 +73,17 @@ const Donate = React.createClass({
   stripeToken() {
     let data = qs.stringify({action: 'stripe_token', data: this.state.stripe});
 
-    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', data)
+    return request
+      .post(endpoint, data)
       .then(res => {
-        console.log(res.data);
+
         if(res.data.id) {
           const stripe = {...this.state.stripe, token: res.data.id};
           this.setState({loading: false, stripe});
         }
 
         if(res.data.stripeCode) {
-           this.setState({loading: false, declined: true, section: 1});
+           this.setState({loading: false, declined: true});
         }
       })
   },
@@ -104,7 +106,7 @@ const Donate = React.createClass({
     };
 
     const dataAjax = qs.stringify({action: 'stripe_charge', data});
-
+    this.setState({loading: true});
     return request.post('https://acninternational.org/wp-admin/admin-ajax.php', dataAjax);
   },
 
@@ -112,7 +114,7 @@ const Donate = React.createClass({
     const {amount, donation_type} = this.state;
     const base = this.props.redirect[donation_type];
     const {customer, id} = stripeResponse;
-
+   
     if (typeof ga !== 'undefined') {
       ga('ecommerce:addTransaction', {
         id: `${this.contact.email}-${id}`,
@@ -141,7 +143,7 @@ const Donate = React.createClass({
   nextSection() {
     let section = this.state.section < 2 ? this.state.section + 1 : 2;
     this.setState({loading: true});
-
+    
     if (this.state.section == 1) {
       if (!this.creditCardIsValid()) {
         this.setState({loading: false});
@@ -158,11 +160,18 @@ const Donate = React.createClass({
       };
 
       this.stripeCharge()
-      .then(res => this.completeTransaction(res.data))
+      .then(res => {
+        this.completeTransaction(res.data)
+      })
     }
 
     let left = `-${section * 100}%`;
-    this.setState({section, left, loading: false});
+
+    if(this.state.section == 0) {
+      this.setState({section, left, loading: false});
+    } else {
+      this.setState({section, left});
+    }    
   },
 
   prevSection(e) {
@@ -226,6 +235,7 @@ const Donate = React.createClass({
             className="donate_react__submit pull-left"
             onClick={this.handleSubmit}
             disabled={this.state.loading}
+            style={this.state.loading ? {opacity: '.5'} : {}}
           >
             {
               this.state.section == 1
