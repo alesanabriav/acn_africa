@@ -27,7 +27,7 @@ const Donate = React.createClass({
         cvc: '',
         token: ''
       },
-      errors: {stripe: {}, contact: {}}
+      errors: {stripe: {}, contact: {}},
       declined: false
     };
   },
@@ -250,7 +250,7 @@ const Donate = React.createClass({
           this.state.declined 
           ? {background: 'RGBA(226, 35, 26, 1)', color: '#fff', padding: '4px 10px'} 
           : {display: 'none'}}>
-          {texts.validation_declined}
+          {this.props.texts.validation_declined}
         </div>
         <Progress section={this.state.section} />
       </form>
