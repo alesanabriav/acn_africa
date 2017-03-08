@@ -251,7 +251,7 @@ const Donate = React.createClass({
         </div>
         <div style={
           this.state.declined 
-          ? {background: 'RGBA(226, 35, 26, 1)', color: '#fff', padding: '4px 10px'} 
+          ? {background: 'RGBA(226, 35, 26, 1)', color: '#fff', padding: '4px 10px', marginBottom: '10px'} 
           : {display: 'none'}}>
           {this.props.texts.validation_declined}
         </div>
