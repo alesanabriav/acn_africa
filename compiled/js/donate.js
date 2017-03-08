@@ -33943,7 +33943,7 @@ var Donate = _react2.default.createClass({
     if (this.donateForm) {
       this.donateForm.addEventListener('keydown', function (e) {
         if (e.keyCode == 9) {
-          console.log('tab');
+          e.preventDefault();
           return;
         }
       });
