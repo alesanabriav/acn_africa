@@ -49,7 +49,6 @@ const Donate = React.createClass({
 
   componentDidMount() {
     this.donateForm.addEventListener('keydown', e => {
-      console.log('keydown', e);
       if (e.which == 9) {
         e.preventDefault();
         this.nextSection();
@@ -75,12 +74,16 @@ const Donate = React.createClass({
 
     return request.post('https://acninternational.org/wp-admin/admin-ajax.php', data)
       .then(res => {
-        const stripe = {...this.state.stripe, token: res.data.id};
-        this.setState({loading: false, stripe});
+        console.log(res.data);
+        if(res.data.id) {
+          const stripe = {...this.state.stripe, token: res.data.id};
+          this.setState({loading: false, stripe});
+        }
+
+        if(res.data.stripeCode) {
+           this.setState({loading: false, declined: true});
+        }
       })
-      .catch(err => {
-        this.setState({declined: true});
-      });
   },
 
   stripeCharge() {
