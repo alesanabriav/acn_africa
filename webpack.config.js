@@ -3,7 +3,7 @@
 module.exports = {
   watch: true,
   entry: {
-  	donate: './components/donate/index.js'
+  	donate: './components/donate.js'
   },
   output: {
   	path: './compiled/js',

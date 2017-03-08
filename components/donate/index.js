@@ -5,7 +5,6 @@ import request from 'axios';
 import Amount from './amount';
 import CreditCard from './credit_card';
 import Contact from './contact';
-import multipleRender from '../../lib/mutiple_render';
 import Progress from './progress';
 import '../../scss/donate.scss';
 
@@ -39,15 +38,17 @@ const Donate = React.createClass({
   fetchCountries() {
     const data = qs.stringify({action: 'countries'});
 
-    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', data)
-    .then(res => {
-      this.setState({countries: res.data});
-      return res.data;
-    });
+    return request
+      .post('https://acninternational.org/wp-admin/admin-ajax.php', data)
+      .then(res => {
+        this.setState({countries: res.data});
+        return res.data;
+      });
   },
 
   componentDidMount() {
     this.donateForm.addEventListener('keydown', e => {
+      console.log('keydown', e);
       if (e.which == 9) {
         e.preventDefault();
         this.nextSection();
@@ -181,7 +182,8 @@ const Donate = React.createClass({
 
     return (
       <form 
-        onSubmit={this.handleSubmit} 
+        onSubmit={this.handleSubmit}
+        onKeyDown={this.nextSection}
         className="donate_react" 
         ref={donateForm => this.donateForm = donateForm} 
       > 
@@ -192,6 +194,7 @@ const Donate = React.createClass({
             width={sectionWidth}
             onChange={this.handleChange}
           />
+
           <CreditCard
             ref={creditCard => this.creditCard = creditCard}
             {...this.state}
@@ -199,6 +202,7 @@ const Donate = React.createClass({
             width={sectionWidth}
             onChange={this.handleChange}
           />
+
           <Contact
             ref={contact => this.contact = contact}
             {...this.state}
@@ -207,6 +211,7 @@ const Donate = React.createClass({
             onChange={this.handleChange}
           />
         </div>
+        
         <div className="form-group">
           <button
             className="donate_react__submit pull-left"
@@ -239,6 +244,7 @@ const Donate = React.createClass({
   }
 });
 
+export default Donate;
 
-multipleRender('.bs-donate', Donate);
+
 
