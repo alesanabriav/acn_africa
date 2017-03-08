@@ -81,7 +81,7 @@ const Donate = React.createClass({
         }
 
         if(res.data.stripeCode) {
-           this.setState({loading: false, declined: true});
+           this.setState({loading: false, declined: true, section: 1});
         }
       })
   },
@@ -147,9 +147,10 @@ const Donate = React.createClass({
         this.setState({loading: false});
         return false;
       };
+ 
       this.stripeToken();
     }
-
+ 
     if (this.state.section == 2) {
       if (!this.contactIsValid()) {
          this.setState({loading: false});
@@ -158,9 +159,6 @@ const Donate = React.createClass({
 
       this.stripeCharge()
       .then(res => this.completeTransaction(res.data))
-      .catch(err => {
-        this.setState({declined: true});
-      });
     }
 
     let left = `-${section * 100}%`;
