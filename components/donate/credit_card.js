@@ -25,7 +25,7 @@ const CedritCard = React.createClass({
   },
   
   validateCvc(cvc) {
-    cvc = validCard.cvv(cvc, 4).isValid;
+    cvc = cvc.length >= 3;
     return this.updateErrors({ cvc });
   },
   
