@@ -7,6 +7,12 @@ const Contact = React.createClass({
     return {contact: {}, countries: [], errors: {contact: {}}, texts: {}};
   },
 
+  getInitialState() {
+    return {
+      selectColor: '#fff'
+    }
+  },
+
   validate(field, val = '') {
     let valid = !isEmpty(val);
     if (field == 'email') valid = isEmail(val);
@@ -18,13 +24,21 @@ const Contact = React.createClass({
     if(e.keyCode == 9) {
       e.preventDefault();
     }
+
     let val = e.currentTarget.value;
     let errors = this.validate(field, val);
-
+    
+    if(field == 'country') {
+      let selectColor = {color: '#fff'};
+      this.setState({selectColor});
+    }
+    
     this.props.onChange({
       contact: {...this.props.contact, [field]: val},
       errors
     });
+
+    
   },
 
   showErr(field) {
@@ -52,8 +66,17 @@ const Contact = React.createClass({
     this.props.onChange({errors});
     return errors;
   },
+  
+  changeSelectColor() {
+    this.setState({selectColor: '#000'});
+  },
+
   render() {
     const {texts, contact} = this.props;
+
+    let selectStyle = {
+      color: this.state.selectColor
+    };
 
     return (
       <div style={{width: this.props.width, float: 'left', padding: '1px'}}>
@@ -90,7 +113,9 @@ const Contact = React.createClass({
               className="form-control"
               placeholder={texts.placeholder_country}
               onChange={this.handleChange.bind(null, 'country')}
+              onClick={this.changeSelectColor}
               value={contact.country || texts.country}
+              style={selectStyle}
             >
             <option>{texts.select_country}</option>
               {this.props.countries.map((country, i) => {

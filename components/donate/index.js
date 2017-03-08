@@ -28,6 +28,7 @@ const Donate = React.createClass({
         token: ''
       },
       errors: {stripe: {}, contact: {}}
+      declined: false
     };
   },
 
@@ -76,6 +77,9 @@ const Donate = React.createClass({
       .then(res => {
         const stripe = {...this.state.stripe, token: res.data.id};
         this.setState({loading: false, stripe});
+      })
+      .catch(err => {
+        this.setState({declined: true});
       });
   },
 
@@ -148,7 +152,12 @@ const Donate = React.createClass({
          this.setState({loading: false});
         return false
       };
-      this.stripeCharge().then(res => this.completeTransaction(res.data));
+
+      this.stripeCharge()
+      .then(res => this.completeTransaction(res.data))
+      .catch(err => {
+        this.setState({declined: true});
+      });
     }
 
     let left = `-${section * 100}%`;
@@ -183,7 +192,6 @@ const Donate = React.createClass({
     return (
       <form 
         onSubmit={this.handleSubmit}
-        onKeyDown={this.nextSection}
         className="donate_react" 
         ref={donateForm => this.donateForm = donateForm} 
       > 
@@ -237,6 +245,12 @@ const Donate = React.createClass({
               </button>
               : ''
           }
+        </div>
+        <div style={
+          this.state.declined 
+          ? {background: 'RGBA(226, 35, 26, 1)', color: '#fff', padding: '4px 10px'} 
+          : {display: 'none'}}>
+          {texts.validation_declined}
         </div>
         <Progress section={this.state.section} />
       </form>
