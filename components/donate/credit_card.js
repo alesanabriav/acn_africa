@@ -18,15 +18,15 @@ const CedritCard = React.createClass({
   },
   
   validateExpiry(month, year) {
-    let valid = validCard.expirationDate({month, year});
+    let valid = validCard.expirationDate({ month, year });
     let exp_month = valid.isValid;
     let exp_year = valid.isValid;
-    return this.updateErrors({exp_month, exp_year});
+    return this.updateErrors({ exp_month, exp_year });
   },
   
   validateCvc(cvc) {
     cvc = validCard.cvv(cvc, 4).isValid;
-    return this.updateErrors({cvc});
+    return this.updateErrors({ cvc });
   },
   
   getCardType(cardNum) {
@@ -40,17 +40,13 @@ const CedritCard = React.createClass({
   },
   
   handleCard(e) {
-    if(e.keyCode == 9) {
-      e.preventDefault();
-    }
-    
     let val = e.currentTarget.value;
     let number = onlyNum(val);
     number = maxLength(number, 16);
     let errors = this.validateCard(number);
     let card_type = this.getCardType(number);
-    let stripe = {...this.props.stripe, number, card_type};
-    this.props.onChange({stripe, errors});
+    let stripe = { ...this.props.stripe, number, card_type };
+    this.props.onChange({ stripe, errors });
   },
   
   handleExpiry(type, e) {

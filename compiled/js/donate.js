@@ -14075,10 +14075,6 @@ var CedritCard = _react2.default.createClass({
     return _extends({}, this.props.errors, { stripe: field });
   },
   handleCard: function handleCard(e) {
-    if (e.keyCode == 9) {
-      e.preventDefault();
-    }
-
     var val = e.currentTarget.value;
     var number = (0, _clean_inputs.onlyNum)(val);
     number = (0, _clean_inputs.maxLength)(number, 16);
@@ -33948,9 +33944,12 @@ var Donate = _react2.default.createClass({
     });
   },
   componentDidMount: function componentDidMount() {
-    document.querySelector('input').addEventListener('keydown', function (e) {
+    var _this2 = this;
+
+    this.donateForm.addEventListener('keydown', function (e) {
       if (e.which == 9) {
         e.preventDefault();
+        _this2.nextSection();
       }
     });
   },
@@ -33965,13 +33964,13 @@ var Donate = _react2.default.createClass({
     this.nextSection();
   },
   stripeToken: function stripeToken() {
-    var _this2 = this;
+    var _this3 = this;
 
     var data = _qs2.default.stringify({ action: 'stripe_token', data: this.state.stripe });
 
     return _axios2.default.post('https://acninternational.org/wp-admin/admin-ajax.php', data).then(function (res) {
-      var stripe = _extends({}, _this2.state.stripe, { token: res.data.id });
-      _this2.setState({ loading: false, stripe: stripe });
+      var stripe = _extends({}, _this3.state.stripe, { token: res.data.id });
+      _this3.setState({ loading: false, stripe: stripe });
     });
   },
   stripeCharge: function stripeCharge() {
@@ -34032,7 +34031,7 @@ var Donate = _react2.default.createClass({
     });
   },
   nextSection: function nextSection() {
-    var _this3 = this;
+    var _this4 = this;
 
     var section = this.state.section < 2 ? this.state.section + 1 : 2;
     this.setState({ loading: true });
@@ -34051,7 +34050,7 @@ var Donate = _react2.default.createClass({
         return false;
       };
       this.stripeCharge().then(function (res) {
-        return _this3.completeTransaction(res.data);
+        return _this4.completeTransaction(res.data);
       });
     }
 
@@ -34065,7 +34064,7 @@ var Donate = _react2.default.createClass({
     this.setState({ section: section, left: left });
   },
   render: function render() {
-    var _this4 = this;
+    var _this5 = this;
 
     var sectionWidth = 100 / 3 + '%';
     var viewPortStyle = { width: '300%', left: this.state.left };
@@ -34090,7 +34089,7 @@ var Donate = _react2.default.createClass({
         onSubmit: this.handleSubmit,
         className: 'donate_react',
         ref: function ref(donateForm) {
-          return _this4.donateForm = donateForm;
+          return _this5.donateForm = donateForm;
         }
       },
       _react2.default.createElement(
@@ -34102,7 +34101,7 @@ var Donate = _react2.default.createClass({
         })),
         _react2.default.createElement(_credit_card2.default, _extends({
           ref: function ref(creditCard) {
-            return _this4.creditCard = creditCard;
+            return _this5.creditCard = creditCard;
           }
         }, this.state, this.props, {
           width: sectionWidth,
@@ -34110,7 +34109,7 @@ var Donate = _react2.default.createClass({
         })),
         _react2.default.createElement(_contact2.default, _extends({
           ref: function ref(contact) {
-            return _this4.contact = contact;
+            return _this5.contact = contact;
           }
         }, this.state, this.props, {
           width: sectionWidth,

@@ -47,9 +47,10 @@ const Donate = React.createClass({
   },
 
   componentDidMount() {
-    document.querySelector('input').addEventListener('keydown', function (e) {
+    this.donateForm.addEventListener('keydown', e => {
       if (e.which == 9) {
         e.preventDefault();
+        this.nextSection();
       }
     });
   },
