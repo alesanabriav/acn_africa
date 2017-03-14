@@ -71,7 +71,7 @@ const Donate = React.createClass({
   },
 
   stripeToken() {
-    let data = qs.stringify({action: 'stripe_token', data: this.state.stripe});
+    let data = qs.stringify({ action: 'stripe_token', data: this.state.stripe });
 
     return request
       .post(endpoint, data)
@@ -110,6 +110,15 @@ const Donate = React.createClass({
     return request.post('https://acninternational.org/wp-admin/admin-ajax.php', dataAjax);
   },
 
+  infusion() {
+    let tags = '';
+    if(this.state.donation_type == 'monthly') tags = '870';
+    if(this.state.donation_type == 'once') tags = '868';
+    
+    let data = qs.stringify({ action: 'infusion_contact', data: { ...contact, tags } });
+    return request.post(endpoint, data);
+  },
+
   completeTransaction(stripeResponse = {}) {
     const {amount, donation_type} = this.state;
     const base = this.props.redirect[donation_type];
@@ -125,9 +134,11 @@ const Donate = React.createClass({
 
       ga('ecommerce:send');
     }
-
-    let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}&order_id=${id}`;
-    window.location = url;
+    
+    this.infusion.then(res => {
+      let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}&order_id=${id}`;
+      window.location = url;
+    })
   },
 
   creditCardIsValid() {
