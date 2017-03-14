@@ -6,6 +6,7 @@ import Amount from './amount';
 import CreditCard from './credit_card';
 import Contact from './contact';
 import Progress from './progress';
+import sendTransaction from '../../lib/sendTransaction';
 import '../../scss/donate.scss';
 const endpoint = 'https://acninternational.org/wp-admin/admin-ajax.php';
 
@@ -119,26 +120,22 @@ const Donate = React.createClass({
     return request.post(endpoint, data);
   },
 
-  completeTransaction(stripeResponse = {}) {
-    const {amount, donation_type} = this.state;
-    const base = this.props.redirect[donation_type];
-    const {customer, id} = stripeResponse;
+  completeTransaction(stripeResponse) {
+    if(stripeResponse && stripeResponse.id) {
+      const {amount, donation_type} = this.state;
+      const base = this.props.redirect[donation_type];
+      const {customer, id} = stripeResponse;
    
-    if (typeof ga !== 'undefined') {
-      ga('ecommerce:addTransaction', {
-        id: `${this.contact.email}-${id}`,
-        affiliation: 'ACN International',
-        revenue: amount,
-        currency: 'USD'
-      });
-
-      ga('ecommerce:send');
+      sendTransaction()
+      .then( this.infusion() )
+      .then(res => {
+        let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}&order_id=${id}`;
+        window.location = url;
+      })
+      .catch(err => console.log(err));
+    } else {
+      this.setState({loading: false, declined: true});
     }
-    
-    this.infusion.then(res => {
-      let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}&order_id=${id}`;
-      window.location = url;
-    })
   },
 
   creditCardIsValid() {
