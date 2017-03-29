@@ -126,7 +126,7 @@ const Donate = React.createClass({
 
       this.infusion()
       .then(res => {
-        let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}&order_id=${id}`;
+        let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}`;
         window.location = url;
       })
       .catch(err => console.error(err));
