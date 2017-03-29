@@ -1,6 +1,4 @@
-*{box-sizing:border-box}html,body{height:100%;width:100%;font-family:'Source Sans Pro',sans-serif !important}
-div.lp-pom-root,.cke-text{font-family:'Source Sans Pro',sans-serif !important}
-a{text-decoration:none !important}input,select{background:transparent;width:100%;display:block;height:45px;border:1px solid #6a7c82;transition:all 300ms;padding:6px 12px;font-size:.8em}
+input,select{background:transparent;width:100%;display:block;height:45px;border:1px solid #6a7c82;transition:all 300ms;padding:6px 12px;font-size:.8em}
 input:focus,select:focus{border-color:#f7c723;box-shadow:none;outline:0}select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAABGdBTUEAALGPC/xhBQAAAKhJREFUGBljzKlp9mNk/P9wcnPdRQYiQU5DmwbDv3+6TIzsDFf//mfcnF3blEKMXqC6sP9//+xnYmK8znxq//73Fq5Om/79YZxvZu/4+fSh/edwGQLSCJSbyMzM7DqpofoKM0ghMQagawTpA2smZAA2jSiacRmASyNIPSOIQAe5zc3Kf38y7GdiYNjxn/G/L8yP6OqwagYpAhvwi2E1CzNTHChw0DWC+AArSGqXBnEQJwAAAABJRU5ErkJggg==") no-repeat 97% 50%;border-radius:0}
 .form-inline select,.form-inline input,.form-inline .input-container{display:inline-block;vertical-align:top;width:auto}
 @media(max-width:767px){.form-inline select,.form-inline input,.form-inline .input-container{width:100%;padding:0 15px}
@@ -47,7 +45,10 @@ input:focus,select:focus{border-color:#f7c723;box-shadow:none;outline:0}select{-
 }.col-1-2,.col-1-3,.col-2-3,.col-1-4,.col-3-4,.col-1-5,.col-2-5,.col-3-5,.col-4-5{padding-left:15px;padding-right:15px;position:relative;float:left}
 .col-1-2{width:50%}.col-1-3{width:33.33333%}.col-2-3{width:66.66667%}.col-1-4{width:25%}
 .col-3-4{width:75%}.col-1-5{width:20%}.col-2-5{width:40%}.col-3-5{width:60%}.col-4-5{width:80%}
-.col-full{width:100%}.hidden{display:none}button{cursor:pointer}.donate_react{position:relative;overflow:hidden;margin:0}
+.col-full{width:100%}.hidden{display:none}button{cursor:pointer}*{box-sizing:border-box}
+html,body{height:100%;width:100%;font-family:'Source Sans Pro',sans-serif !important}
+div.lp-pom-root,.cke-text{font-family:'Source Sans Pro',sans-serif !important}
+a{text-decoration:none !important}.donate_react{position:relative;overflow:hidden;margin:0}
 .donate_react input{border-color:#fff;color:#fff}.donate_react input::-webkit-input-placeholder{color:#fff}
 .donate_react input:-moz-placeholder{color:#fff}.donate_react input::-moz-placeholder{color:#fff}
 .donate_react input:-ms-input-placeholder{color:#fff}.donate_react select{border-color:#fff}
