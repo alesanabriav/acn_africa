@@ -114,7 +114,7 @@ const Donate = React.createClass({
     if(this.state.donation_type == 'monthly') tags = '870';
     if(this.state.donation_type == 'once') tags = '868';
     
-    let data = qs.stringify({ action: 'infusion_contact', data: { ...contact, tags } });
+    let data = qs.stringify({ action: 'infusion_contact', data: { ...this.state.contact, tags } });
     return request.post(endpoint, data);
   },
 
