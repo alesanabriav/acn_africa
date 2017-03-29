@@ -1,0 +1,146 @@
+ .videos {
+  	width: 90%;
+    height: 100%;
+    margin: 0 auto;
+
+  }
+  
+  .videos__main {
+  	width: 60%;
+    float: left;
+  }
+  
+  .videos__main img {
+  	width: 100%;
+  }
+  
+  .videos__carousel {
+    width: 40%;
+  	float: left;
+    position: relative;
+    height: 100%;
+  }
+  
+  .videos__carousel__viewport {
+  	width: 60.5%;
+    height: 85%;
+    overflow: hidden;
+    position: relative;
+    margin:35px auto;
+  }
+  
+  @media (max-width: 768px) {
+    
+    .videos__main {
+  	  width: 100%;
+  	}
+    
+    .videos__carousel {
+  	  width: 100%;
+      height: 53.5%;
+      
+  	}
+    
+    .videos__carousel__viewport {
+    	height: 100%;
+    }
+  
+  }
+  
+  .videos__carousel__container {
+    transition: 300ms all;
+  	margin-top: 0;
+  }
+	
+  .videos__carousel__item {
+  	display: block;
+  	float: left;
+    height: auto;
+  }
+  
+  .arrow_up {
+     width: 20px;
+    height: 20px;
+    cursor: pointer;
+    width: 0; 
+  	height: 0; 
+  	border-left: 15px solid transparent;
+  	border-right: 15px solid transparent;
+  	border-bottom: 15px solid #fff;
+    background: transparent;
+    margin: 0 auto;
+  }
+  
+  .arrow_down {
+  	width: 0; 
+  	height: 0;
+    border: none;
+  	border-left: 15px solid transparent;
+  	border-right: 15px solid transparent;
+  	border-top: 15px solid #fff;
+    background: transparent;
+    margin: 0 auto;
+  }
+  
+  .videos__carousel__up {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+  	display: block;
+    margin: auto;
+  	width: 60.5%;
+    background: #18374C;
+    border: none;
+    padding: 7px 0;
+    opacity: .5;
+    cursor: pointer;
+    
+  }
+  
+   .videos__carousel__down {
+     position: absolute;
+     bottom: 5px;
+    left: 0;
+    right: 0;
+  	display: block;
+    margin: auto;
+    width: 60.5%;
+     cursor: pointer;
+     border: none;
+      padding: 7px 0;
+     background: #18374C;
+  }
+  
+  .videos__carousel img {
+  	width: 100%;
+  }
+  
+  .videos__open-modal {
+    display: block;
+    width: 100%;
+    float: left;
+  	cursor: pointer;
+  }
+  
+  .videos__title {
+  	display: none;
+    text-align: center;
+    border-top: 2px solid rgba(39,79,94,1);
+    border-bottom: 2px solid rgba(39,79,94,1);  
+    font-size: 18px;
+    float: left;
+    width: 80%;
+    margin: 30px;
+    padding: 15px 0;
+    color: rgb(39, 79, 94);
+  }
+  
+      
+    @media (max-width: 768px) {
+      .videos__title {
+      	display: block;
+      }
+    	
+    }
+  

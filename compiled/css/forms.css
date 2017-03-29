@@ -1,7 +1,0 @@
-input,select{background:transparent;width:100%;display:block;height:45px;border:1px solid #6a7c82;transition:all 300ms;padding:6px 12px;font-size:.8em}
-input:focus,select:focus{border-color:#f7c723;box-shadow:none;outline:0}select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:transparent url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAICAYAAAAm06XyAAAABGdBTUEAALGPC/xhBQAAAKhJREFUGBljzKlp9mNk/P9wcnPdRQYiQU5DmwbDv3+6TIzsDFf//mfcnF3blEKMXqC6sP9//+xnYmK8znxq//73Fq5Om/79YZxvZu/4+fSh/edwGQLSCJSbyMzM7DqpofoKM0ghMQagawTpA2smZAA2jSiacRmASyNIPSOIQAe5zc3Kf38y7GdiYNjxn/G/L8yP6OqwagYpAhvwi2E1CzNTHChw0DWC+AArSGqXBnEQJwAAAABJRU5ErkJggg==") no-repeat 97% 50%;border-radius:0}
-.form-inline select,.form-inline input,.form-inline .input-container{display:inline-block;vertical-align:top;width:auto}
-@media(max-width:767px){.form-inline select,.form-inline input,.form-inline .input-container{width:100%;padding:0 15px}
-}.input-inline{display:inline-block;vertical-align:middle;width:auto}.input-container,.form-group{margin-bottom:10px}
-.form-group{position:relative}.form-group--addon{float:left}.form-group--addon input{padding-left:50px}
-.form-group__addon{left:25px;top:30%;position:absolute;height:45px;color:#fff}.input-error{background:#f4334a;color:#fff;text-align:left;width:95%;font-size:.9em;padding:3px 0 3px 12px;border-radius:3px}

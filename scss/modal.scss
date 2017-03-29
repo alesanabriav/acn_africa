@@ -1,0 +1,52 @@
+ .modal-open {
+ 	overflow: hidden; 
+ }
+  
+.modal {
+  background: RGBA(43, 55, 64, 0.9);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -999999;
+  transition: all 300ms ease;
+  top: -100%;
+  opacity: 0;
+  left: 0;
+  right: 0; 
+  }
+  
+  
+  .modal__close {
+    color: red;
+    font-size: 32px;
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    z-index: 1010; 
+  
+ }
+  
+  .modal .iframe-container {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-bottom:0; }
+  
+    .modal .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; 
+
+  }
+  
+  .modal--show {
+    z-index: 999999;
+    top: 0;
+    opacity: 1; }
+  
+    @media (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+      .modal--show {
+        top: 60px; } }

@@ -5,7 +5,7 @@ const concat = require('gulp-concat');
 var uglifycss = require('gulp-uglifycss');
 
 gulp.task('sass', function () {
-  return gulp.src('./scss/**/*.scss')
+  return gulp.src('./scss/app.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
 			browsers: ['last 2 versions'],
