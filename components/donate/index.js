@@ -6,8 +6,6 @@ import Amount from './amount';
 import CreditCard from './credit_card';
 import Contact from './contact';
 import Progress from './progress';
-import sendTransaction from '../../lib/sendTransaction';
-import '../../scss/donate.scss';
 const endpoint = 'https://acninternational.org/wp-admin/admin-ajax.php';
 
 const Donate = React.createClass({
@@ -108,7 +106,7 @@ const Donate = React.createClass({
 
     const dataAjax = qs.stringify({action: 'stripe_charge', data});
     this.setState({loading: true});
-    return request.post('https://acninternational.org/wp-admin/admin-ajax.php', dataAjax);
+    return request.post(endpoint, dataAjax);
   },
 
   infusion() {
@@ -125,14 +123,13 @@ const Donate = React.createClass({
       const {amount, donation_type} = this.state;
       const base = this.props.redirect[donation_type];
       const {customer, id} = stripeResponse;
-   
-      sendTransaction()
-      .then( this.infusion() )
+
+      this.infusion()
       .then(res => {
         let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}&order_id=${id}`;
         window.location = url;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
     } else {
       this.setState({loading: false, declined: true});
     }
