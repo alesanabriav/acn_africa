@@ -1,4 +1,24 @@
 @import 'variables';
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	
+	box-sizing: border-box; 
+}
+html, body  { 
+	height: 100%;
+	width: 100%;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}  
+  
+  div.lp-pom-root, .cke-text {font-family: 'Source Sans Pro', sans-serif !important;}
+  
+  a {
+  	text-decoration: none !important;
+  }
+  
+
 @import 'forms';
 @import 'grid';
 @import 'donate';
@@ -8,4 +28,6 @@
 @import 'nav';
 @import 'modal';
 @import 'videos';
+
+
 
