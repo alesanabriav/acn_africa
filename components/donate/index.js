@@ -111,10 +111,22 @@ const Donate = React.createClass({
 
   infusion() {
     let tags = '';
-    if(this.state.donation_type == 'monthly') tags = '870';
-    if(this.state.donation_type == 'once') tags = '868';
+    if(this.state.donation_type == 'monthly') tags = ['870'];
+    if(this.state.donation_type == 'once') tags = ['868'];
     
-    let data = qs.stringify({ action: 'infusion_contact', data: { ...this.state.contact, tags } });
+    let data = qs.stringify({ action: 'infusion_contact', data: { ...this.state.contact, tags} });
+    return request.post(endpoint, data);
+  },
+
+  storeConvertLoop() {
+    const data = qs.stringify({data: this.state.contact, action: 'convertloop_contact'});
+    return request.post(endpoint, data);
+  },
+
+  storeEventConvertLoop() {
+    const { email, country } = this.state.contact;
+    const event = {name: `Donation-${this.state.donation_type}`, country , person: { email } };
+    const data = qs.stringify({data: event, action: 'convertloop_event'});
     return request.post(endpoint, data);
   },
 
@@ -123,8 +135,9 @@ const Donate = React.createClass({
       const {amount, donation_type} = this.state;
       const base = this.props.redirect[donation_type];
       const {customer, id} = stripeResponse;
-
-      this.infusion()
+      this.storeConvertLoop()
+      .then(this.storeEventConvertLoop)
+      .then(this.infusion)
       .then(res => {
         let url = `${base}?customer_id=${customer}-${id}&order_revenue=${amount}`;
         window.location = url;
