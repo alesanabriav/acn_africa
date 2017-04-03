@@ -13890,8 +13890,8 @@ var Donate = _react2.default.createClass({
   },
   infusion: function infusion() {
     var tags = '';
-    if (this.state.donation_type == 'monthly') tags = ['870'];
-    if (this.state.donation_type == 'once') tags = ['868'];
+    if (this.state.donation_type == 'monthly') tags = ['870', '914'];
+    if (this.state.donation_type == 'once') tags = ['868', '914'];
 
     var data = _qs2.default.stringify({ action: 'infusion_contact', data: _extends({}, this.state.contact, { tags: tags }) });
     return _axios2.default.post(endpoint, data);
