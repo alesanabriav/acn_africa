@@ -125,7 +125,18 @@ const Donate = React.createClass({
 
   storeEventConvertLoop() {
     const { email, country } = this.state.contact;
-    const event = {name: `Donation-${this.state.donation_type}`, country , person: { email } };
+    const metadata =  {
+      amount: this.state.amount,
+      type: this.state.donation_type
+    };
+
+    const event = {
+      name: `Donation-${this.state.donation_type}`, 
+      person: { email },
+      country,
+      metadata
+    };
+
     const data = qs.stringify({data: event, action: 'convertloop_event'});
     return request.post(endpoint, data);
   },
